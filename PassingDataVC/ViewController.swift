@@ -28,14 +28,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
+        NotificationCenter.default.addObserver(self, selector: #selector(notify), name: NSNotification.Name("text"), object: nil)
+    }
+    
+    @objc func notify(_ notification: Notification) {
+        let text = notification.object as! String
+        label.text = text
     }
     
     @objc func nextPage() {
        let vc = NextViewController()
         present(vc, animated: true)
-        vc.handler = { text in
-            self.label.text = text
-        }
     }
     
     override func viewWillLayoutSubviews() {

@@ -9,8 +9,6 @@ import UIKit
 
 class NextViewController: UIViewController {
     
-    var handler: ((String) -> Void)?
-    
     let textField: UITextField = {
         let tf = UITextField()
         tf.backgroundColor = .white
@@ -33,10 +31,7 @@ class NextViewController: UIViewController {
     }
     
     @objc func saveText() {
-        guard let text = textField.text else {
-            return
-        }
-        handler?(text)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "text"), object: textField.text)
         dismiss(animated: true)
     }
     
