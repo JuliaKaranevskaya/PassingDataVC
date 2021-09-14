@@ -31,7 +31,11 @@ class ViewController: UIViewController {
     }
     
     @objc func nextPage() {
-       
+       let vc = NextViewController()
+        present(vc, animated: true)
+        vc.handler = { text in
+            self.label.text = text
+        }
     }
     
     override func viewWillLayoutSubviews() {
