@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+ 
     let label: UILabel = {
         let l = UILabel()
         l.backgroundColor = .white
@@ -28,10 +28,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
+        
     }
     
     @objc func nextPage() {
-       
+        let vc = NextViewController()
+        present(vc, animated: true)
+        vc.delegate = self
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,7 +64,12 @@ class ViewController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.widthAnchor.constraint(equalToConstant: 200).isActive = true
     }
+}
 
-
+extension ViewController: NextViewControllerDelegate {
+    
+    func fetchText(text: String) {
+        label.text = text
+    }
 }
 
